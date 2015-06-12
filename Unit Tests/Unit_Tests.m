@@ -5921,6 +5921,16 @@
 
 //////////
 
+- (void)testMod0 {
+    JKBigInteger *val = [[JKBigInteger alloc] initWithString:@"24"];
+    JKBigInteger *div = [[JKBigInteger alloc] initWithString:@"19"];
+    JKBigInteger *result = [val mod:div];
+
+    XCTAssertEqualObjects([result stringValueWithRadix:10], @"5");
+}
+
+//////////
+
 - (void)testPowMod0 {
     JKBigInteger *val = [[JKBigInteger alloc] initWithString:@"26" andRadix:10];
     JKBigInteger *exp = [[JKBigInteger alloc] initWithString:@"73" andRadix:10];

@@ -247,6 +247,21 @@
     return @[quotientBigInteger, remainderBigInteger];
 }
 
+- (id)mod:(JKBigInteger *)divisor {
+    mp_int modulus;
+    mp_init(&modulus);
+
+    if (MP_OKAY != mp_mod(&m_value, &(divisor->m_value), &modulus)) {
+        mp_clear(&modulus);
+        return nil;
+    }
+
+    JKBigInteger *newBigInteger = [[JKBigInteger alloc] initWithValue:&modulus];
+    mp_clear(&modulus);
+
+    return newBigInteger;
+}
+
 - (id)pow:(unsigned int)exponent {
 
     int result;
